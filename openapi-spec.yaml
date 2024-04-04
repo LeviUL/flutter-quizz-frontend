@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: This is a sample API description.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /questions:
+    get:
+      summary: Get all questions
+      responses:
+        '200':
+          description: get questions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionList'
+    post:
+      summary: Create a new question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '200':
+          description: Create question
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+components:
+  schemas:
+    Question:
+      type: object
+      properties:
+        id:
+          type: string
+        question:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+    Option:
+      type: object
+      properties:
+        id:
+          type: string
+        value:
+          type: string
+    QuestionList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Question'
+    QuestionInput:
+      type: object
+      properties:
+        question:
+          type: string
+        wrongAnswers:
+          type: array
+          items:
+            type: string
+        goodAnswer: 
+          type: string
