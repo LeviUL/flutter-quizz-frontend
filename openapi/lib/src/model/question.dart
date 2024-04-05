@@ -15,17 +15,21 @@ part 'question.g.dart';
 /// Properties:
 /// * [id] 
 /// * [question] 
+/// * [answerId] 
 /// * [options] 
 @BuiltValue()
 abstract class Question implements Built<Question, QuestionBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'question')
-  String? get question;
+  String get question;
+
+  @BuiltValueField(wireName: r'answerId')
+  String get answerId;
 
   @BuiltValueField(wireName: r'options')
-  BuiltList<Option>? get options;
+  BuiltList<Option> get options;
 
   Question._();
 
@@ -50,27 +54,26 @@ class _$QuestionSerializer implements PrimitiveSerializer<Question> {
     Question object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.question != null) {
-      yield r'question';
-      yield serializers.serialize(
-        object.question,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.options != null) {
-      yield r'options';
-      yield serializers.serialize(
-        object.options,
-        specifiedType: const FullType(BuiltList, [FullType(Option)]),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'question';
+    yield serializers.serialize(
+      object.question,
+      specifiedType: const FullType(String),
+    );
+    yield r'answerId';
+    yield serializers.serialize(
+      object.answerId,
+      specifiedType: const FullType(String),
+    );
+    yield r'options';
+    yield serializers.serialize(
+      object.options,
+      specifiedType: const FullType(BuiltList, [FullType(Option)]),
+    );
   }
 
   @override
@@ -107,6 +110,13 @@ class _$QuestionSerializer implements PrimitiveSerializer<Question> {
             specifiedType: const FullType(String),
           ) as String;
           result.question = valueDes;
+          break;
+        case r'answerId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.answerId = valueDes;
           break;
         case r'options':
           final valueDes = serializers.deserialize(

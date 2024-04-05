@@ -40,10 +40,17 @@ components:
           type: string
         question:
           type: string
+        answerId:
+          type: string
         options:
           type: array
           items:
             $ref: '#/components/schemas/Option'
+      required:
+        - id
+        - question
+        - answerId
+        - options
     Option:
       type: object
       properties:
@@ -51,6 +58,9 @@ components:
           type: string
         value:
           type: string
+      required:
+        - id
+        - value
     QuestionList:
       type: array
       items:
@@ -66,3 +76,7 @@ components:
             type: string
         goodAnswer: 
           type: string
+      required:
+        - question
+        - wrongAnswers
+        - goodAnswer

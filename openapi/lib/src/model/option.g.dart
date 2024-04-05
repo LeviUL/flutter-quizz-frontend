@@ -8,14 +8,17 @@ part of 'option.dart';
 
 class _$Option extends Option {
   @override
-  final String? id;
+  final String id;
   @override
-  final String? value;
+  final String value;
 
   factory _$Option([void Function(OptionBuilder)? updates]) =>
       (new OptionBuilder()..update(updates))._build();
 
-  _$Option._({this.id, this.value}) : super._();
+  _$Option._({required this.id, required this.value}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'Option', 'id');
+    BuiltValueNullFieldError.checkNotNull(value, r'Option', 'value');
+  }
 
   @override
   Option rebuild(void Function(OptionBuilder) updates) =>
@@ -88,7 +91,11 @@ class OptionBuilder implements Builder<Option, OptionBuilder> {
   Option build() => _build();
 
   _$Option _build() {
-    final _$result = _$v ?? new _$Option._(id: id, value: value);
+    final _$result = _$v ??
+        new _$Option._(
+            id: BuiltValueNullFieldError.checkNotNull(id, r'Option', 'id'),
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'Option', 'value'));
     replace(_$result);
     return _$result;
   }

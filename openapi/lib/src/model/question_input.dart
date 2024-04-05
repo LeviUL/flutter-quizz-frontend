@@ -18,13 +18,13 @@ part 'question_input.g.dart';
 @BuiltValue()
 abstract class QuestionInput implements Built<QuestionInput, QuestionInputBuilder> {
   @BuiltValueField(wireName: r'question')
-  String? get question;
+  String get question;
 
   @BuiltValueField(wireName: r'wrongAnswers')
-  BuiltList<String>? get wrongAnswers;
+  BuiltList<String> get wrongAnswers;
 
   @BuiltValueField(wireName: r'goodAnswer')
-  String? get goodAnswer;
+  String get goodAnswer;
 
   QuestionInput._();
 
@@ -49,27 +49,21 @@ class _$QuestionInputSerializer implements PrimitiveSerializer<QuestionInput> {
     QuestionInput object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.question != null) {
-      yield r'question';
-      yield serializers.serialize(
-        object.question,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.wrongAnswers != null) {
-      yield r'wrongAnswers';
-      yield serializers.serialize(
-        object.wrongAnswers,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
-      );
-    }
-    if (object.goodAnswer != null) {
-      yield r'goodAnswer';
-      yield serializers.serialize(
-        object.goodAnswer,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'question';
+    yield serializers.serialize(
+      object.question,
+      specifiedType: const FullType(String),
+    );
+    yield r'wrongAnswers';
+    yield serializers.serialize(
+      object.wrongAnswers,
+      specifiedType: const FullType(BuiltList, [FullType(String)]),
+    );
+    yield r'goodAnswer';
+    yield serializers.serialize(
+      object.goodAnswer,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

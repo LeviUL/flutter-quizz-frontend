@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:quiz_game/models/Answer.dart';
+import 'package:openapi/openapi.dart';
 
 class QuestionOption extends StatefulWidget {
   const QuestionOption(
@@ -16,10 +16,10 @@ class QuestionOption extends StatefulWidget {
       required this.startTimer,
       required this.stopTimer});
 
-  final Answer answer;
+  final Option answer;
   final bool isSelected;
   final bool isQuestionAnswered;
-  final void Function(Answer) submitResponse;
+  final void Function(Option) submitResponse;
   final bool isCorrectAnswer;
   final bool isRevealing;
   final VoidCallback toggleRevealState;

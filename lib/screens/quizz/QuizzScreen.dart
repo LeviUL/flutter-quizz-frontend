@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:openapi/openapi.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_game/models/Question.dart';
 import 'package:quiz_game/providers/Game.dart';
 import 'package:quiz_game/screens/quizz/widgets/NextButton.dart';
 import 'package:quiz_game/screens/quizz/widgets/QuestionOption.dart';

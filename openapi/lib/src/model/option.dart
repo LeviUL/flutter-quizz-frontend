@@ -16,10 +16,10 @@ part 'option.g.dart';
 @BuiltValue()
 abstract class Option implements Built<Option, OptionBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'value')
-  String? get value;
+  String get value;
 
   Option._();
 
@@ -44,20 +44,16 @@ class _$OptionSerializer implements PrimitiveSerializer<Option> {
     Option object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.value != null) {
-      yield r'value';
-      yield serializers.serialize(
-        object.value,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'value';
+    yield serializers.serialize(
+      object.value,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override

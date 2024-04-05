@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:quiz_game/models/Answer.dart';
-import 'package:quiz_game/models/Question.dart';
+import 'package:openapi/openapi.dart';
 import 'package:quiz_game/models/StopTimer.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -11,7 +10,7 @@ class Game extends ChangeNotifier {
   late List<Question> _questions;
   int _current = -1;
   bool _isQuestionAnswered = false;
-  Answer? _selectedAnswer;
+  Option? _selectedAnswer;
   bool _isRevealing = false;
   Timer? intervaler;
   late StopTimer _timer;
@@ -54,7 +53,7 @@ class Game extends ChangeNotifier {
     return _isQuestionAnswered;
   }
 
-  Answer? getSelectedAnswer() {
+  Option? getSelectedAnswer() {
     return _selectedAnswer;
   }
 
@@ -86,7 +85,7 @@ class Game extends ChangeNotifier {
     _isRevealing = false;
   }
 
-  void submitResponse(Answer? answer) {
+  void submitResponse(Option? answer) {
     _timer.stop();
     _selectedAnswer = answer;
     _isQuestionAnswered = true;

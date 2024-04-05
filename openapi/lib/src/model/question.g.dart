@@ -8,16 +8,28 @@ part of 'question.dart';
 
 class _$Question extends Question {
   @override
-  final String? id;
+  final String id;
   @override
-  final String? question;
+  final String question;
   @override
-  final BuiltList<Option>? options;
+  final String answerId;
+  @override
+  final BuiltList<Option> options;
 
   factory _$Question([void Function(QuestionBuilder)? updates]) =>
       (new QuestionBuilder()..update(updates))._build();
 
-  _$Question._({this.id, this.question, this.options}) : super._();
+  _$Question._(
+      {required this.id,
+      required this.question,
+      required this.answerId,
+      required this.options})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'Question', 'id');
+    BuiltValueNullFieldError.checkNotNull(question, r'Question', 'question');
+    BuiltValueNullFieldError.checkNotNull(answerId, r'Question', 'answerId');
+    BuiltValueNullFieldError.checkNotNull(options, r'Question', 'options');
+  }
 
   @override
   Question rebuild(void Function(QuestionBuilder) updates) =>
@@ -32,6 +44,7 @@ class _$Question extends Question {
     return other is Question &&
         id == other.id &&
         question == other.question &&
+        answerId == other.answerId &&
         options == other.options;
   }
 
@@ -40,6 +53,7 @@ class _$Question extends Question {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, question.hashCode);
+    _$hash = $jc(_$hash, answerId.hashCode);
     _$hash = $jc(_$hash, options.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -50,6 +64,7 @@ class _$Question extends Question {
     return (newBuiltValueToStringHelper(r'Question')
           ..add('id', id)
           ..add('question', question)
+          ..add('answerId', answerId)
           ..add('options', options))
         .toString();
   }
@@ -66,6 +81,10 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
   String? get question => _$this._question;
   set question(String? question) => _$this._question = question;
 
+  String? _answerId;
+  String? get answerId => _$this._answerId;
+  set answerId(String? answerId) => _$this._answerId = answerId;
+
   ListBuilder<Option>? _options;
   ListBuilder<Option> get options =>
       _$this._options ??= new ListBuilder<Option>();
@@ -80,7 +99,8 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
     if ($v != null) {
       _id = $v.id;
       _question = $v.question;
-      _options = $v.options?.toBuilder();
+      _answerId = $v.answerId;
+      _options = $v.options.toBuilder();
       _$v = null;
     }
     return this;
@@ -105,12 +125,17 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
     try {
       _$result = _$v ??
           new _$Question._(
-              id: id, question: question, options: _options?.build());
+              id: BuiltValueNullFieldError.checkNotNull(id, r'Question', 'id'),
+              question: BuiltValueNullFieldError.checkNotNull(
+                  question, r'Question', 'question'),
+              answerId: BuiltValueNullFieldError.checkNotNull(
+                  answerId, r'Question', 'answerId'),
+              options: options.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'options';
-        _options?.build();
+        options.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Question', _$failedField, e.toString());

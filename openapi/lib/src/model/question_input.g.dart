@@ -8,17 +8,27 @@ part of 'question_input.dart';
 
 class _$QuestionInput extends QuestionInput {
   @override
-  final String? question;
+  final String question;
   @override
-  final BuiltList<String>? wrongAnswers;
+  final BuiltList<String> wrongAnswers;
   @override
-  final String? goodAnswer;
+  final String goodAnswer;
 
   factory _$QuestionInput([void Function(QuestionInputBuilder)? updates]) =>
       (new QuestionInputBuilder()..update(updates))._build();
 
-  _$QuestionInput._({this.question, this.wrongAnswers, this.goodAnswer})
-      : super._();
+  _$QuestionInput._(
+      {required this.question,
+      required this.wrongAnswers,
+      required this.goodAnswer})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        question, r'QuestionInput', 'question');
+    BuiltValueNullFieldError.checkNotNull(
+        wrongAnswers, r'QuestionInput', 'wrongAnswers');
+    BuiltValueNullFieldError.checkNotNull(
+        goodAnswer, r'QuestionInput', 'goodAnswer');
+  }
 
   @override
   QuestionInput rebuild(void Function(QuestionInputBuilder) updates) =>
@@ -82,7 +92,7 @@ class QuestionInputBuilder
     final $v = _$v;
     if ($v != null) {
       _question = $v.question;
-      _wrongAnswers = $v.wrongAnswers?.toBuilder();
+      _wrongAnswers = $v.wrongAnswers.toBuilder();
       _goodAnswer = $v.goodAnswer;
       _$v = null;
     }
@@ -108,14 +118,16 @@ class QuestionInputBuilder
     try {
       _$result = _$v ??
           new _$QuestionInput._(
-              question: question,
-              wrongAnswers: _wrongAnswers?.build(),
-              goodAnswer: goodAnswer);
+              question: BuiltValueNullFieldError.checkNotNull(
+                  question, r'QuestionInput', 'question'),
+              wrongAnswers: wrongAnswers.build(),
+              goodAnswer: BuiltValueNullFieldError.checkNotNull(
+                  goodAnswer, r'QuestionInput', 'goodAnswer'));
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'wrongAnswers';
-        _wrongAnswers?.build();
+        wrongAnswers.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'QuestionInput', _$failedField, e.toString());

@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // String answerId
+    test('to test the property `answerId`', () async {
+      // TODO
+    });
+
     // BuiltList<Option> options
     test('to test the property `options`', () async {
       // TODO
