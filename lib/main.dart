@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:quiz_game/App.dart';
 import 'package:quiz_game/providers/SessionData.dart';
 import 'package:quiz_game/providers/Game.dart';
-import 'package:quiz_game/screens/main/MainMenu.dart';
 
 void main() {
   runApp(const Index());
@@ -62,22 +61,6 @@ class _MainState extends State<Main> {
       onTap: hideStatusBar,
       child: PopScope(
         canPop: false,
-        onPopInvoked: (details) {
-          print(ModalRoute.of(context));
-          bool shouldPop = ModalRoute.of(context)?.isFirst ?? false;
-          if (shouldPop) {
-            print("popping...");
-            Navigator.of(context).pop(true);
-            Navigator.of(context).pop(true);
-          } else {
-            print("going to main...");
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const MainMenu(),
-              ),
-            );
-          }
-        },
         child: Scaffold(
           body: Builder(builder: (BuildContext newContext) {
             return AppWidget(sessionData: sessionData);

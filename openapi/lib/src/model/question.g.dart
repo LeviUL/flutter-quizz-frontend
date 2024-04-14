@@ -14,6 +14,8 @@ class _$Question extends Question {
   @override
   final String answerId;
   @override
+  final String categoryId;
+  @override
   final BuiltList<Option> options;
 
   factory _$Question([void Function(QuestionBuilder)? updates]) =>
@@ -23,11 +25,14 @@ class _$Question extends Question {
       {required this.id,
       required this.question,
       required this.answerId,
+      required this.categoryId,
       required this.options})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Question', 'id');
     BuiltValueNullFieldError.checkNotNull(question, r'Question', 'question');
     BuiltValueNullFieldError.checkNotNull(answerId, r'Question', 'answerId');
+    BuiltValueNullFieldError.checkNotNull(
+        categoryId, r'Question', 'categoryId');
     BuiltValueNullFieldError.checkNotNull(options, r'Question', 'options');
   }
 
@@ -45,6 +50,7 @@ class _$Question extends Question {
         id == other.id &&
         question == other.question &&
         answerId == other.answerId &&
+        categoryId == other.categoryId &&
         options == other.options;
   }
 
@@ -54,6 +60,7 @@ class _$Question extends Question {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, question.hashCode);
     _$hash = $jc(_$hash, answerId.hashCode);
+    _$hash = $jc(_$hash, categoryId.hashCode);
     _$hash = $jc(_$hash, options.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -65,6 +72,7 @@ class _$Question extends Question {
           ..add('id', id)
           ..add('question', question)
           ..add('answerId', answerId)
+          ..add('categoryId', categoryId)
           ..add('options', options))
         .toString();
   }
@@ -85,6 +93,10 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
   String? get answerId => _$this._answerId;
   set answerId(String? answerId) => _$this._answerId = answerId;
 
+  String? _categoryId;
+  String? get categoryId => _$this._categoryId;
+  set categoryId(String? categoryId) => _$this._categoryId = categoryId;
+
   ListBuilder<Option>? _options;
   ListBuilder<Option> get options =>
       _$this._options ??= new ListBuilder<Option>();
@@ -100,6 +112,7 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
       _id = $v.id;
       _question = $v.question;
       _answerId = $v.answerId;
+      _categoryId = $v.categoryId;
       _options = $v.options.toBuilder();
       _$v = null;
     }
@@ -130,6 +143,8 @@ class QuestionBuilder implements Builder<Question, QuestionBuilder> {
                   question, r'Question', 'question'),
               answerId: BuiltValueNullFieldError.checkNotNull(
                   answerId, r'Question', 'answerId'),
+              categoryId: BuiltValueNullFieldError.checkNotNull(
+                  categoryId, r'Question', 'categoryId'),
               options: options.build());
     } catch (_) {
       late String _$failedField;

@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    // String categoryId
+    test('to test the property `categoryId`', () async {
+      // TODO
+    });
+
     // BuiltList<Option> options
     test('to test the property `options`', () async {
       // TODO

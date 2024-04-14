@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_game/providers/Game.dart';
 import 'package:quiz_game/providers/SessionData.dart';
+import 'package:quiz_game/screens/error/ErrorScreen.dart';
 import 'package:quiz_game/screens/main/MainMenu.dart';
 
 class AppWidget extends StatefulWidget {
@@ -21,7 +23,10 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     SessionData sessionData = Provider.of(context);
+    Game game = Provider.of(context);
+    game.setQuestions(sessionData.getQuestions());
     bool loading = sessionData.sessionLoading;
+    bool sessionError = sessionData.sessionError;
 
     return Center(
         child: loading
@@ -35,8 +40,9 @@ class _AppWidgetState extends State<AppWidget> {
                       onGenerateRoute: (settings) {
                         return MaterialPageRoute(
                           builder: (context) {
-                            // Replace this with your main menu or the appropriate widget
-                            return const MainMenu();
+                            return sessionError
+                                ? const ErrorScreen()
+                                : const MainMenu();
                           },
                         );
                       },

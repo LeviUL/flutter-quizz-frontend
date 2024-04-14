@@ -48,25 +48,6 @@ class ResultScreen extends StatelessWidget {
               ],
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Finished in",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22,
-                ),
-              ),
-              Text(
-                "${game.getScore()} seconds",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                    color: Theme.of(context).primaryColor),
-              ),
-            ],
-          ),
         ],
       )),
       Expanded(
@@ -77,12 +58,13 @@ class ResultScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 1,
                 height: 36,
                 child: ElevatedButton(
-                  onPressed: () => {
+                  onPressed: () {
+                    game.reset();
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const MainMenu(),
                       ),
-                    )
+                    );
                   },
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(

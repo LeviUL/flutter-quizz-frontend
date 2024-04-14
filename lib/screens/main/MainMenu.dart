@@ -1,24 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:quiz_game/providers/Game.dart';
-import 'package:quiz_game/providers/SessionData.dart';
+import 'package:openapi/openapi.dart';
+import 'package:quiz_game/screens/main/widgets/CategoriesList.dart';
 import 'package:quiz_game/screens/main/widgets/StartButton.dart';
-import 'package:quiz_game/widgets/Welcome.dart';
+import 'package:quiz_game/screens/main/widgets/Welcome.dart';
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
+  @override
+  State<MainMenu> createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+  int? _selected;
 
   @override
   Widget build(BuildContext context) {
-    SessionData sessionData = Provider.of(context);
-    Game game = Provider.of(context);
+    void setSelected(int? selected) {
+      setState(() {
+        _selected = selected;
+      });
+    }
 
-    game.setQuestions(sessionData.getQuestions());
-
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Welcome(), StartButton()],
+        children: [
+          const Welcome(),
+          CategoriesList(
+            selected: _selected,
+            setSelected: setSelected,
+          ),
+          StartButton(
+            selected: _selected,
+          )
+        ],
       ),
     );
   }

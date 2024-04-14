@@ -9,15 +9,51 @@ paths:
   /questions:
     get:
       summary: Get all questions
+      parameters:
+        - name: categoryId
+          in: query
+          description: ID of the category to filter questions
+          required: false
+          schema:
+            type: string
       responses:
         '200':
-          description: get questions
+          description: Get questions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuestionList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
     post:
       summary: Create a new question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInput'
+      responses:
+        '200':
+          description: Create question
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+  /categories:
+    get:
+      summary: Get all categories
+      responses:
+        '200':
+          description: Get categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+    post:
+      summary: Create a new category
       requestBody:
         required: true
         content:
@@ -42,6 +78,8 @@ components:
           type: string
         answerId:
           type: string
+        categoryId:
+          type: string
         options:
           type: array
           items:
@@ -51,6 +89,17 @@ components:
         - question
         - answerId
         - options
+        - categoryId
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
     Option:
       type: object
       properties:
@@ -61,10 +110,6 @@ components:
       required:
         - id
         - value
-    QuestionList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Question'
     QuestionInput:
       type: object
       properties:
@@ -76,7 +121,17 @@ components:
             type: string
         goodAnswer: 
           type: string
+        categoryId:
+          type: string
       required:
         - question
         - wrongAnswers
         - goodAnswer
+        - categoryId
+    CategoryInput:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name

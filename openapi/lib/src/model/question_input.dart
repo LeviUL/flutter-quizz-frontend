@@ -15,6 +15,7 @@ part 'question_input.g.dart';
 /// * [question] 
 /// * [wrongAnswers] 
 /// * [goodAnswer] 
+/// * [categoryId] 
 @BuiltValue()
 abstract class QuestionInput implements Built<QuestionInput, QuestionInputBuilder> {
   @BuiltValueField(wireName: r'question')
@@ -25,6 +26,9 @@ abstract class QuestionInput implements Built<QuestionInput, QuestionInputBuilde
 
   @BuiltValueField(wireName: r'goodAnswer')
   String get goodAnswer;
+
+  @BuiltValueField(wireName: r'categoryId')
+  String get categoryId;
 
   QuestionInput._();
 
@@ -62,6 +66,11 @@ class _$QuestionInputSerializer implements PrimitiveSerializer<QuestionInput> {
     yield r'goodAnswer';
     yield serializers.serialize(
       object.goodAnswer,
+      specifiedType: const FullType(String),
+    );
+    yield r'categoryId';
+    yield serializers.serialize(
+      object.categoryId,
       specifiedType: const FullType(String),
     );
   }
@@ -107,6 +116,13 @@ class _$QuestionInputSerializer implements PrimitiveSerializer<QuestionInput> {
             specifiedType: const FullType(String),
           ) as String;
           result.goodAnswer = valueDes;
+          break;
+        case r'categoryId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.categoryId = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -7,6 +7,8 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(Category.serializer)
+      ..add(CategoryInput.serializer)
       ..add(Option.serializer)
       ..add(Question.serializer)
       ..add(QuestionInput.serializer)

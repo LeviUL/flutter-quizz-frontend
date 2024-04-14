@@ -13,6 +13,8 @@ class _$QuestionInput extends QuestionInput {
   final BuiltList<String> wrongAnswers;
   @override
   final String goodAnswer;
+  @override
+  final String categoryId;
 
   factory _$QuestionInput([void Function(QuestionInputBuilder)? updates]) =>
       (new QuestionInputBuilder()..update(updates))._build();
@@ -20,7 +22,8 @@ class _$QuestionInput extends QuestionInput {
   _$QuestionInput._(
       {required this.question,
       required this.wrongAnswers,
-      required this.goodAnswer})
+      required this.goodAnswer,
+      required this.categoryId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         question, r'QuestionInput', 'question');
@@ -28,6 +31,8 @@ class _$QuestionInput extends QuestionInput {
         wrongAnswers, r'QuestionInput', 'wrongAnswers');
     BuiltValueNullFieldError.checkNotNull(
         goodAnswer, r'QuestionInput', 'goodAnswer');
+    BuiltValueNullFieldError.checkNotNull(
+        categoryId, r'QuestionInput', 'categoryId');
   }
 
   @override
@@ -43,7 +48,8 @@ class _$QuestionInput extends QuestionInput {
     return other is QuestionInput &&
         question == other.question &&
         wrongAnswers == other.wrongAnswers &&
-        goodAnswer == other.goodAnswer;
+        goodAnswer == other.goodAnswer &&
+        categoryId == other.categoryId;
   }
 
   @override
@@ -52,6 +58,7 @@ class _$QuestionInput extends QuestionInput {
     _$hash = $jc(_$hash, question.hashCode);
     _$hash = $jc(_$hash, wrongAnswers.hashCode);
     _$hash = $jc(_$hash, goodAnswer.hashCode);
+    _$hash = $jc(_$hash, categoryId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -61,7 +68,8 @@ class _$QuestionInput extends QuestionInput {
     return (newBuiltValueToStringHelper(r'QuestionInput')
           ..add('question', question)
           ..add('wrongAnswers', wrongAnswers)
-          ..add('goodAnswer', goodAnswer))
+          ..add('goodAnswer', goodAnswer)
+          ..add('categoryId', categoryId))
         .toString();
   }
 }
@@ -84,6 +92,10 @@ class QuestionInputBuilder
   String? get goodAnswer => _$this._goodAnswer;
   set goodAnswer(String? goodAnswer) => _$this._goodAnswer = goodAnswer;
 
+  String? _categoryId;
+  String? get categoryId => _$this._categoryId;
+  set categoryId(String? categoryId) => _$this._categoryId = categoryId;
+
   QuestionInputBuilder() {
     QuestionInput._defaults(this);
   }
@@ -94,6 +106,7 @@ class QuestionInputBuilder
       _question = $v.question;
       _wrongAnswers = $v.wrongAnswers.toBuilder();
       _goodAnswer = $v.goodAnswer;
+      _categoryId = $v.categoryId;
       _$v = null;
     }
     return this;
@@ -122,7 +135,9 @@ class QuestionInputBuilder
                   question, r'QuestionInput', 'question'),
               wrongAnswers: wrongAnswers.build(),
               goodAnswer: BuiltValueNullFieldError.checkNotNull(
-                  goodAnswer, r'QuestionInput', 'goodAnswer'));
+                  goodAnswer, r'QuestionInput', 'goodAnswer'),
+              categoryId: BuiltValueNullFieldError.checkNotNull(
+                  categoryId, r'QuestionInput', 'categoryId'));
     } catch (_) {
       late String _$failedField;
       try {

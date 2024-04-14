@@ -50,10 +50,10 @@ import 'package:openapi/openapi.dart';
 final api = Openapi().getDefaultApi();
 
 try {
-    final response = await api.questionsGet();
+    final response = await api.categoriesGet();
     print(response);
 } catch on DioException (e) {
-    print("Exception when calling DefaultApi->questionsGet: $e\n");
+    print("Exception when calling DefaultApi->categoriesGet: $e\n");
 }
 
 ```
@@ -64,12 +64,16 @@ All URIs are relative to *https://api.example.com/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+[*DefaultApi*](doc/DefaultApi.md) | [**categoriesGet**](doc/DefaultApi.md#categoriesget) | **GET** /categories | Get all categories
+[*DefaultApi*](doc/DefaultApi.md) | [**categoriesPost**](doc/DefaultApi.md#categoriespost) | **POST** /categories | Create a new category
 [*DefaultApi*](doc/DefaultApi.md) | [**questionsGet**](doc/DefaultApi.md#questionsget) | **GET** /questions | Get all questions
 [*DefaultApi*](doc/DefaultApi.md) | [**questionsPost**](doc/DefaultApi.md#questionspost) | **POST** /questions | Create a new question
 
 
 ## Documentation For Models
 
+ - [Category](doc/Category.md)
+ - [CategoryInput](doc/CategoryInput.md)
  - [Option](doc/Option.md)
  - [Question](doc/Question.md)
  - [QuestionInput](doc/QuestionInput.md)

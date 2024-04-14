@@ -14,6 +14,8 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
+import 'package:openapi/src/model/category.dart';
+import 'package:openapi/src/model/category_input.dart';
 import 'package:openapi/src/model/option.dart';
 import 'package:openapi/src/model/question.dart';
 import 'package:openapi/src/model/question_input.dart';
@@ -21,6 +23,8 @@ import 'package:openapi/src/model/question_input.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
+  Category,
+  CategoryInput,
   Option,
   Question,
   QuestionInput,
@@ -29,6 +33,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Question)]),
         () => ListBuilder<Question>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Category)]),
+        () => ListBuilder<Category>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

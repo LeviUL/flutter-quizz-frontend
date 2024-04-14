@@ -7,8 +7,8 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class Game extends ChangeNotifier {
   int _score = 0;
-  late List<Question> _questions;
-  int _current = -1;
+  List<Question>? _questions;
+  int _current = 0;
   bool _isQuestionAnswered = false;
   Option? _selectedAnswer;
   bool _isRevealing = false;
@@ -41,7 +41,7 @@ class Game extends ChangeNotifier {
     return _score;
   }
 
-  List<Question> getQuestions() {
+  List<Question>? getQuestions() {
     return _questions;
   }
 
@@ -62,13 +62,13 @@ class Game extends ChangeNotifier {
   }
 
   bool isLastQuestion() {
-    if (_current < _questions.length - 1) {
+    if (_current < _questions!.length - 1) {
       return false;
     }
     return true;
   }
 
-  void setQuestions(List<Question> questions) {
+  void setQuestions(List<Question>? questions) {
     _questions = questions;
   }
 
@@ -76,13 +76,15 @@ class Game extends ChangeNotifier {
     _isRevealing = value;
   }
 
-/////
   void reset() {
-    _score = 0;
-    _current = -1;
-    _isQuestionAnswered = false;
-    _selectedAnswer;
     _isRevealing = false;
+    stopIntervaler();
+    _timer.reset();
+    _questions = null;
+    _score = 0;
+    _current = 0;
+    _isQuestionAnswered = false;
+    _selectedAnswer = null;
   }
 
   void submitResponse(Option? answer) {
@@ -90,7 +92,7 @@ class Game extends ChangeNotifier {
     _selectedAnswer = answer;
     _isQuestionAnswered = true;
     _isRevealing = true;
-    if (_questions[_current].answerId == answer?.id) {
+    if (_questions![_current].answerId == answer?.id) {
       _score = _score + 1;
     } else {
       startIntervaler();
@@ -100,7 +102,7 @@ class Game extends ChangeNotifier {
 
   void goToNextQuestion() {
     stopIntervaler();
-    _timer.start();
+    startTimer();
     _selectedAnswer = null;
     _isQuestionAnswered = false;
     _current = _current + 1;
@@ -111,5 +113,9 @@ class Game extends ChangeNotifier {
   void toggleRevealState() {
     _isRevealing = !_isRevealing;
     notifyListeners();
+  }
+
+  void startTimer() {
+    _timer.start();
   }
 }

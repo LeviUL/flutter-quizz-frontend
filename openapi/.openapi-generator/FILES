@@ -2,6 +2,8 @@
 .openapi-generator-ignore
 README.md
 analysis_options.yaml
+doc/Category.md
+doc/CategoryInput.md
 doc/DefaultApi.md
 doc/Option.md
 doc/Question.md
@@ -16,12 +18,16 @@ lib/src/auth/basic_auth.dart
 lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
+lib/src/model/category.dart
+lib/src/model/category_input.dart
 lib/src/model/date.dart
 lib/src/model/option.dart
 lib/src/model/question.dart
 lib/src/model/question_input.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/category_input_test.dart
+test/category_test.dart
 test/default_api_test.dart
 test/option_test.dart
 test/question_input_test.dart
